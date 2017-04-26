@@ -25,12 +25,12 @@ def init_gl_window(width = 640, height = 480)
     # Ativar normalização suavizada
     glShadeModel(GL_SMOOTH)
 
-	 
+
 	 # Configurar câmera
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity
     # Calculate aspect ratio of the window
-    gluPerspective(45.0, width / height, 0.1, 100.0)
+    gluPerspective(70.0, width / height, 0.1, 100.0)
 
     glMatrixMode(GL_MODELVIEW)
 
@@ -47,7 +47,7 @@ def reshape(width, height)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity
 
-    gluPerspective(45.0, width / height, 0.1, 100.0)
+    gluPerspective(70.0, width / height, 0.1, 100.0)
 end
 
 #draw_gl_scene = Proc.new do
@@ -64,7 +64,7 @@ def draw_gl_scene
 
     # Draw a triangle
     glBegin(GL_POLYGON)
-        glVertex3f( 0.0,  1.0, 0.0)
+        glVertex3f( 1.0,  1.0, 0.0)
         glVertex3f( 1.0, -1.0, 0.0)
         glVertex3f(-1.0, -1.0, 0.0)
     glEnd
@@ -80,11 +80,11 @@ def draw_gl_scene
         glVertex3f(-1.0, -1.0, 0.0)
     glEnd
 
-    # Swap buffers for display 
+    # Swap buffers for display
     glutSwapBuffers
 end
 
-# The idle function to handle 
+# The idle function to handle
 def idle
     glutPostRedisplay
 end
