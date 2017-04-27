@@ -1,3 +1,11 @@
+#######################################
+# Trabalho CGR
+# Boneco de Neve
+# CGR - UDESC
+#     Marlon Henry Schweigert
+#     Jonathan de Oliveira Cardoso
+#######################################
+
 require 'gl'
 require 'glu'
 require 'glut'
