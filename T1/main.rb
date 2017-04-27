@@ -27,7 +27,7 @@ def render_camera
 end
 
 def render_sphere r, x, y, z
-  
+
 end
 
 
@@ -35,7 +35,7 @@ def onStartGL windowX, windowY
   glEnable GL_TEXTURE_2D
   glEnable GL_DEPTH_TEST
   glEnable GL_CULL_FACE
-  glEnable GL_LIGHTING
+  # glEnable GL_LIGHTING
 end
 
 def onFinishGL
@@ -44,11 +44,16 @@ def onFinishGL
 end
 
 def onRenderEvent
-  startTime = Time.now # <- USADO PRA CALCULAR O FPS
   # Limpa o Buffer da tela e de perspectiva
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
+  # Limpar toda a tela
+  glClearColor(0.0, 0.0, 0.0, 0)
+
+
+  # Modo suavizado
   glShadeModel GL_SMOOTH
+
 
   # Desenhar a cena
   render_camera
@@ -56,14 +61,7 @@ def onRenderEvent
 
   # Envia buffer da memória RAM para a placa de vídeo
   glutSwapBuffers
-  # Calcular FPS
-  endTime = Time.now
-  ms = endTime-startTime
-  $time += ms
-  if $time >= 1
-    puts "#{1.0/ms} FPS"
-    $time -= 1
-  end
+
 end
 
 def onReshapeEvent x, y
