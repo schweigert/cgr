@@ -11,6 +11,9 @@ include Glut
 ## CAMERA ##
 ############
 
+$posiCamera = [0.0, 0.0, 5.0]
+$rot = 0
+
 def render_camera
   # Modo Projeção
   glMatrixMode GL_PROJECTION
@@ -19,7 +22,7 @@ def render_camera
 
   # Carregar modo de perspectiva
   gluPerspective $fov, $winX.to_f/$winY.to_f, 0.1, 100.0
-  posi = [-5.0,  2.0, -5.0]
+  posi = $posiCamera
   foco = [ 0.0,  0.0,  0.0]
   cima = [ 0.0,  1.0,  0.0]
 
@@ -27,7 +30,18 @@ def render_camera
 end
 
 def render_sphere r, x, y, z
+    glPushMatrix
+      glTranslatef x, y, z
+      glutSolidSphere r, 20, 20
+    glPopMatrix
+end
 
+def render_cone r, s, x, y, z
+    glPushMatrix
+      glTranslatef x, y, z
+      glRotatef -90, 0.0, 1.0, 0.0
+      glutSolidCone r, s, 20, 20
+    glPopMatrix
 end
 
 
@@ -35,7 +49,7 @@ def onStartGL windowX, windowY
   glEnable GL_TEXTURE_2D
   glEnable GL_DEPTH_TEST
   glEnable GL_CULL_FACE
-  # glEnable GL_LIGHTING
+  #glEnable GL_LIGHTING
 end
 
 def onFinishGL
@@ -55,9 +69,44 @@ def onRenderEvent
   glShadeModel GL_SMOOTH
 
 
+  ################
+  ## NOSSA CENA ##
+  ################
+
   # Desenhar a cena
   render_camera
 
+  $rot += 1
+
+  glRotatef $rot, 0.0, 1.0, 0.0
+
+  glColor3f 1.0, 1.0, 1.0
+  # Desenhar o corpo
+  render_sphere 1.0, 0.0, 0.0, 0.0
+  # Desenhar a Cabeça
+  render_sphere 0.75, 0.0, 1.5, 0.0
+  # Desenhar Olhos
+  glColor3f 0.0, 0.0, 0.0
+  render_sphere 0.15, -0.6, 1.6, 0.2
+  render_sphere 0.15, -0.6, 1.6, -0.2
+
+  # Desenhar Nariz
+  glColor3f 1.0, 0.65, 0.0
+  render_cone 0.1, 0.5, -0.7, 1.5, 0.0
+
+  # Bracinhos (Tudo com bracinhos fica melhor)
+
+  glLineWidth 10
+  glColor3f 0.36, 0.25, 0.2
+  glBegin GL_LINES
+    glVertex3f 0.0, 0.4, 0.0
+    glVertex3f -0.4, 0.8, 1.6
+  glEnd
+
+  glBegin GL_LINES
+    glVertex3f 0.0, 0.4, 0.0
+    glVertex3f -0.4, 0.8, -1.6
+  glEnd
 
   # Envia buffer da memória RAM para a placa de vídeo
   glutSwapBuffers
@@ -82,7 +131,20 @@ def onKeyboardEvent key, mouseX, mouseY
   when ?\e
     glutDestroyWindow $window
     exit 0
+  when ?a
+    $posiCamera[0] += 1.0
+  when ?d
+    $posiCamera[0] -= 1.0
+  when ?w
+    $posiCamera[2] += 1.0
+  when ?s
+    $posiCamera[2] -= 1.0
+  when ?z
+    $posiCamera[1] += 1.0
+  when ?x
+    $posiCamera[1] -= 1.0
   end
+  puts $posiCamera
   glutPostRedisplay
 end
 
