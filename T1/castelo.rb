@@ -37,29 +37,6 @@ def render_camera
   gluLookAt posi[0],posi[1],posi[2], foco[0], foco[1], foco[2], cima[0], cima[1], cima[2]
 end
 
-def render_sphere r, x, y, z
-    glPushMatrix
-      glTranslatef x, y, z
-      glutSolidSphere r, 20, 20
-    glPopMatrix
-end
-
-def render_cone r, s, x, y, z
-    glPushMatrix
-      glTranslatef x, y, z
-      glRotatef -90, 0.0, 1.0, 0.0
-      glutSolidCone r, s, 20, 20
-    glPopMatrix
-end
-
-
-def render_cylinder b, t, h, x, y, z
-    glPushMatrix
-      glTranslatef x, y, z
-      glRotatef -90, 0.0, 1.0, 0.0
-      gluCylinder b, t, h, 20, 20
-    glPopMatrix
-end
 
 def onStartGL windowX, windowY
   glEnable GL_TEXTURE_2D
@@ -78,7 +55,7 @@ def onRenderEvent
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
   # Limpar toda a tela
-  glClearColor(0.0, 0.0, 0.0, 0)
+  glClearColor(0.0, 1.0, 0.0, 0)
 
 
   # Modo suavizado
@@ -92,8 +69,9 @@ def onRenderEvent
   # Desenhar a cena
   render_camera
 
-  # Desenhar Torres
-  render_cylinder 1, 1, 3, 1, 1.5, 1
+  quadric = gluNewQuadric
+  gluQuadricOrientation quadric, GLU_OUTSIDE
+  gluCylinder quadric, 1, 1, 1, 10, 1
 
   # Envia buffer da memória RAM para a placa de vídeo
   glutSwapBuffers
