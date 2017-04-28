@@ -97,7 +97,29 @@ def onStartGL windowX, windowY
   glEnable GL_TEXTURE_2D
   glEnable GL_DEPTH_TEST
   glEnable GL_CULL_FACE
-  #glEnable GL_LIGHTING
+
+  # Luz
+  # glEnable GL_LIGHTING
+  # glEnable GL_LIGHT0
+
+
+  # light0posi = [-3,5,-4,0]
+  # glLightfv GL_LIGHT0, GL_POSITION, light0posi
+  # glColorMaterial GL_FRONT, GL_AMBIENT_AND_DIFFUSE
+
+  # no_mat = [0.0, 0.0, 0.0, 1.0]
+  # mat_ambient = [0.0215,  0.1745,   0.0215,  1.0]
+  # mat_diffuse = [0.07568, 0.61424,  0.07568, 1.0]
+  # mat_specular = [0.633,   0.727811, 0.633,   1.0]
+  # low_shininess = 35.0
+
+
+  # glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+  # glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+  # glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+  # glMaterialf(GL_FRONT, GL_SHININESS, low_shininess);
+  # glMaterialfv(GL_FRONT, GL_EMISSION, no_mat);
+
 end
 
 def onFinishGL
