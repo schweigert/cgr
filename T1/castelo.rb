@@ -19,7 +19,7 @@ include Glut
 ## CAMERA ##
 ############
 
-$posiCamera = [0.0, 0.0, 5.0]
+$posiCamera = [-10.0, 5.0, -10.0]
 $rot = 0
 
 def render_camera
@@ -35,6 +35,61 @@ def render_camera
   cima = [ 0.0,  1.0,  0.0]
 
   gluLookAt posi[0],posi[1],posi[2], foco[0], foco[1], foco[2], cima[0], cima[1], cima[2]
+end
+
+def render_colum q, x, y
+
+  glPushMatrix
+    glRotatef $rot, 0, 1.0, 0
+
+    glColor3f 0.5, 0.32, 0.18
+    glPushMatrix
+        glTranslatef x, 0, y
+        glRotatef 90, 1, 0, 0
+        gluCylinder q, 1.0, 1.0, 3.0, 10, 10
+    glPopMatrix
+
+    glColor3f 0.5, 0, 0
+    glPushMatrix
+      glTranslatef x, 0, y
+      glRotatef 90, -1, 0, 0
+      glutSolidCone 1.5, 1.0, 10, 10
+    glPopMatrix
+  glPopMatrix
+
+end
+
+def render_base x
+
+  glPushMatrix
+    glColor3f 0.5, 0.32, 0.18
+    glRotatef $rot, 0, 1.0, 0
+    glScalef 1, 2, 1
+    glPushMatrix
+      glTranslatef x, -1, 0
+      glScalef 1, 1, 8
+      glutSolidCube 1
+    glPopMatrix
+
+    glPushMatrix
+      glTranslatef -x, -1, 0
+      glScalef 1, 1, 8
+      glutSolidCube 1
+    glPopMatrix
+
+    glPushMatrix
+      glTranslatef 0, -1, x
+      glScalef 8, 1, 1
+      glutSolidCube 1
+    glPopMatrix
+
+    glPushMatrix
+      glTranslatef 0, -1, -x
+      glScalef 8, 1, 1
+      glutSolidCube 1
+    glPopMatrix
+  glPopMatrix
+
 end
 
 
@@ -66,16 +121,27 @@ def onRenderEvent
   ## NOSSA CENA ##
   ################
 
+  $rot += 1
+
+
+  # Criar a quadrica
+  q = gluNewQuadric
+
   # Desenhar a cena
   render_camera
 
-  quadric = gluNewQuadric
-  gluQuadricOrientation quadric, GLU_OUTSIDE
-  gluCylinder quadric, 1, 1, 1, 10, 1
 
+  render_base 4
+  # Desenhar colunas
+  render_colum q,  4,  4
+  render_colum q,  4, -4
+  render_colum q, -4,  4
+  render_colum q, -4, -4
   # Envia buffer da memória RAM para a placa de vídeo
   glutSwapBuffers
 
+  # Deseltar a quadrica
+  gluDeleteQuadric q
 end
 
 def onReshapeEvent x, y
@@ -145,7 +211,7 @@ glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
 # Inicializar a janela
 glutInitWindowSize($winX, $winY)
 # Inicializa  o objeto da janela
-$window = glutCreateWindow("Atividade Boneco de Neve")
+$window = glutCreateWindow("Atividade Castelo | Ruby <3")
 
 glutDisplayFunc   method(:onRenderEvent).to_proc
 glutReshapeFunc   method(:onReshapeEvent).to_proc

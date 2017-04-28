@@ -188,7 +188,7 @@ glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
 # Inicializar a janela
 glutInitWindowSize($winX, $winY)
 # Inicializa  o objeto da janela
-$window = glutCreateWindow("Atividade Boneco de Neve")
+$window = glutCreateWindow("Atividade Boneco de Neve | Ruby <3")
 
 glutDisplayFunc   method(:onRenderEvent).to_proc
 glutReshapeFunc   method(:onReshapeEvent).to_proc
