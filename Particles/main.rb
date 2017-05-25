@@ -127,6 +127,9 @@ end
 
 
 def onStartGL windowX, windowY
+
+  glutFullScreen
+
   glEnable GL_TEXTURE_2D
   glEnable GL_DEPTH_TEST
   glEnable GL_CULL_FACE
@@ -179,6 +182,8 @@ def onRenderEvent
   # Modo suavizado
   glShadeModel GL_SMOOTH
 
+
+  $rot += 1
 
   ################
   ## NOSSA CENA ##
