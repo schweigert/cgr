@@ -36,11 +36,11 @@ class Fire
     @particles = []
 
     @windTime = 0
-    @windForce = [-1,0,-1]
+    @windForce = [-3,0,-0.3]
 
     @maxParticles.times do
       # [ [pos x, pos y, pos z], lifetime, velocity x, velocity z , color]
-      @particles << [[rand,rand,rand],rand*maxTime,rand*2 - 1, rand*2 -1, rand/10*2 + 0.8]
+      @particles << [[rand,rand,rand],rand*maxTime,(rand*2 -1)/2, (rand*2 -1)/2, rand/10*2 + 0.8]
     end
   end
 
@@ -57,7 +57,7 @@ class Fire
       posi, time, velo_x, velo_z, color = @particles[i]
       if time > @maxTime + rand*3
 
-        @particles[i] = [[rand, 0, rand], 0, rand*2 -1, rand*2 -1, rand/10*2 + 0.8]
+        @particles[i] = [[rand, 0, rand], 0, (rand*2 -1)/2, (rand*2 -1)/2, rand/10*2 + 0.8]
         next
       end
 
@@ -160,7 +160,7 @@ def onStartGL windowX, windowY
   # Fogo
 
   $fire = Fire.new 3000, 3
-  $fire1 = Fire.new
+  $fire1 = Fire.new 10000
 
   $fire.setTranslate -2,0,0
   $fire1.setTranslate 2,0,0
@@ -183,7 +183,7 @@ def onRenderEvent
   glShadeModel GL_SMOOTH
 
 
-  $rot += 1
+  #$rot += 1
 
   ################
   ## NOSSA CENA ##
