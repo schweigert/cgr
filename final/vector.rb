@@ -50,6 +50,18 @@ class Vector
     return Vector.new @x * v, @x * v
   end
 
+  # Sobrecarrega a operação de adição atribuição
+  def += v
+    @x += v.x
+    @y += v.y
+  end
+
+  #Sobrecarrega a operação de multiplicação atribuicao
+  def *= v
+    @x *= v
+    @y *= v
+  end
+
 end
 
 Vector::Unit  =  Vector.new  1, 1
