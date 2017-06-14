@@ -45,9 +45,15 @@ class Vector
     return Vector.new @x + v.x, @y + v.y
   end
 
+  # Sobrecarrega a operação de multiplicação
   def * v
-    return Vector.new @x * v, @x * v unless v.class == Vector
-    return Vector.new 
+    return Vector.new @x * v, @x * v
   end
 
 end
+
+Vector::Unit  =  Vector.new  1, 1
+Vector::Up    =  Vector.new  1, 0
+Vector::Down  =  Vector.new -1, 0
+Vector::Right =  Vector.new  0, 1
+Vector::Left  =  Vector.new  0,-1
