@@ -2,6 +2,7 @@ class Scene
 
   def initialize
     @entitiesList = []
+    createScene
   end
 
   def attach entity
@@ -18,6 +19,10 @@ class Scene
     for i in @entitiesList
       i.onRender
     end
+  end
+
+
+  def createScene
   end
 
 end

@@ -3,6 +3,8 @@ require 'glu'
 require 'glut'
 
 require_relative "timer"
+require_relative "entity"
+require_relative "scene"
 
 include Gl
 include Glu
