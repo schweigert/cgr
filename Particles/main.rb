@@ -27,8 +27,6 @@ $title = "Atividade de Particulas | Ruby <3"
 
 class Fire
 
-
-
   def initialize maxParticles = 5000, maxTime = 2.0
     @maxParticles = maxParticles
     @maxTime = maxTime
@@ -102,7 +100,8 @@ def render_camera
   glLoadIdentity
 
   # Carregar modo de perspectiva
-  gluPerspective $fov, $winX.to_f/$winY.to_f, 0.1, 100.0
+  #gluPerspective $fov, $winX.to_f/$winY.to_f, 0.1, 100.0
+  glOrtho -10, 10, -10, 10,  0.1, 150
   posi = $posiCamera
   foco = [ 0.0,  1.0,  0.0]
   cima = [ 0.0,  1.0,  0.0]
