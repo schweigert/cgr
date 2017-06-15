@@ -4,7 +4,6 @@ require 'gl'
 require 'glu'
 require 'glut'
 
-
 include Gl
 include Glu
 include Glut

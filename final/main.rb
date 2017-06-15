@@ -18,8 +18,10 @@ end
 def onRenderEvent
 
   glClear GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT
-  glClearColor 0,0,0,0
+  glClearColor 1,1,1,0
 
+
+  $scene.onRender
 
   glutSwapBuffers
 
@@ -69,6 +71,8 @@ def onIdleEvent
   Timer.update
   $timeAcc += Timer.deltaTime
 
+  $scene.onLoop Timer.deltaTime
+
   if $timeAcc > 5
     glutSetWindowTitle "CGREngine [#{(1/Timer.deltaTime).to_i}]"
     $timeAcc -= 5
@@ -93,6 +97,8 @@ glutIdleFunc      method(:onIdleEvent).to_proc
 glEnable GL_TEXTURE_2D
 glEnable GL_DEPTH_TEST
 glEnable GL_CULL_FACE
+
+$scene = Scene.new
 
 Timer.init
 
