@@ -4,7 +4,7 @@ class Scene
     @entitiesList = []
   end
 
-  def addEntity entity
+  def attach entity
     @entitiesList << entity
   end
 
