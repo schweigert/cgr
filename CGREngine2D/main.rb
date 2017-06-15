@@ -18,7 +18,7 @@ include Glut
 ## CAMERA ##
 ############
 
-$posiCamera = [0.0, 0.0, 10.0]
+$posiCamera = [5.0, 0.0, 10.0]
 $rot = 0
 
 $title = "Atividade de Particulas | Ruby <3"
@@ -99,11 +99,12 @@ def render_camera
 
   # Carregar modo de perspectiva
   #gluPerspective $fov, $winX.to_f/$winY.to_f, 0.1, 100.0
-  glOrtho -10, 10, -10, 10,  0.1, 150
+
   posi = $posiCamera
   foco = [ 0.0,  1.0,  0.0]
   cima = [ 0.0,  1.0,  0.0]
 
+  glOrtho -10 + posi[0], 10 + posi[0], -10 + posi[1], 10 + posi[1],  0.1, 150
   gluLookAt posi[0],posi[1],posi[2], foco[0], foco[1], foco[2], cima[0], cima[1], cima[2]
 end
 
