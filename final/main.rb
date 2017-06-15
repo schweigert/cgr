@@ -2,6 +2,7 @@ require 'gl'
 require 'glu'
 require 'glut'
 
+require_relative "timer"
 
 include Gl
 include Glu
@@ -60,6 +61,17 @@ def onMouseMotionEvent mouseX, mouseY
 end
 
 def onIdleEvent
+
+  $timeAcc ||= 0
+
+  Timer.update
+  $timeAcc += Timer.deltaTime
+  
+  if $timeAcc > 5
+    glutSetWindowTitle "CGREngine [#{1/Timer.deltaTime}]"
+    $timeAcc -= 5
+  end
+
   glutPostRedisplay
 end
 
@@ -76,10 +88,10 @@ glutMouseFunc     method(:onMouseButtonEvent).to_proc
 glutMotionFunc    method(:onMouseMotionEvent).to_proc
 glutIdleFunc      method(:onIdleEvent).to_proc
 
-# glutFullScreen
-
 glEnable GL_TEXTURE_2D
 glEnable GL_DEPTH_TEST
 glEnable GL_CULL_FACE
+
+Timer.init
 
 glutMainLoop()
