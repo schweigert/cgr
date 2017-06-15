@@ -31,8 +31,12 @@ class Scene
     obj = Entity.new
     attach obj
 
-    obj = Fire.new 3000, 3
+    obj = Entity.new
+    obj.translate Vector.new(1,1)
     attach obj
+
+    obj = Fire.new 3000, 3
+
   end
 
 end

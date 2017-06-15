@@ -20,7 +20,7 @@ include Glut
 ## CAMERA ##
 ############
 
-$posiCamera = [0.0, 3.0, 5.0]
+$posiCamera = [0.0, 0.0, 10.0]
 $rot = 0
 
 $title = "Atividade de Particulas | Ruby <3"
@@ -34,7 +34,7 @@ class Fire
     @particles = []
 
     @windTime = 0
-    @windForce = [-3,0,-0.3]
+    @windForce = [3,0,0]
 
     @maxParticles.times do
       # [ [pos x, pos y, pos z], lifetime, velocity x, velocity z , color]

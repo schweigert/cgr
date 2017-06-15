@@ -37,7 +37,6 @@ def onReshapeEvent x, y
   glMatrixMode GL_PROJECTION
   glLoadIdentity
 
-  gluPerspective 45, x.to_f/y.to_f, 0.1, 100.0
 
 end
 
@@ -73,9 +72,9 @@ def onIdleEvent
 
   $scene.onLoop Timer.deltaTime
 
-  if $timeAcc > 5
+  if $timeAcc > 1
     glutSetWindowTitle "CGREngine [#{(1/Timer.deltaTime).to_i}]"
-    $timeAcc -= 5
+    $timeAcc -= 1
   end
 
   glutPostRedisplay
