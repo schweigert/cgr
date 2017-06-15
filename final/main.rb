@@ -15,8 +15,8 @@ end
 
 def onRenderEvent
 
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-  glClearColor 1,1,1,0
+  glClear GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT
+  glClearColor 0,0,0,0
 
 
   glutSwapBuffers
@@ -66,9 +66,9 @@ def onIdleEvent
 
   Timer.update
   $timeAcc += Timer.deltaTime
-  
+
   if $timeAcc > 5
-    glutSetWindowTitle "CGREngine [#{1/Timer.deltaTime}]"
+    glutSetWindowTitle "CGREngine [#{(1/Timer.deltaTime).to_i}]"
     $timeAcc -= 5
   end
 
@@ -76,9 +76,9 @@ def onIdleEvent
 end
 
 glutInit
-glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
+glutInitDisplayMode GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH
 glutInitWindowSize 800, 600
-$window = glutCreateWindow "CGREngine 2D"
+$window = glutCreateWindow "CGREngine [60]"
 
 glutDisplayFunc   method(:onRenderEvent).to_proc
 glutReshapeFunc   method(:onReshapeEvent).to_proc
