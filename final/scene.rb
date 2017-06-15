@@ -30,6 +30,9 @@ class Scene
 
     obj = Entity.new
     attach obj
+
+    obj = Fire.new 3000, 3
+    attach obj
   end
 
 end
