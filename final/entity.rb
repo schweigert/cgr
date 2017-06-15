@@ -35,9 +35,13 @@ class Entity
 
 	def onRender
 		glPushMatrix
+			glPointSize 8
 			glTranslatef @position.x, @position.y, 0
 			glBegin GL_POINTS
 				glVertex3f 0, 0, 0
+				glVertex3f 1, 0, 0
+				glVertex3f 0, 1, 0
+				glVertex3f 0, 0, 1
 			glEnd
 			for i in @entitiesList
 				i.onRender

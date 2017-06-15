@@ -1,3 +1,6 @@
+require_relative "camera"
+require_relative "entity"
+
 class Scene
 
   def initialize
@@ -21,8 +24,12 @@ class Scene
     end
   end
 
-
   def createScene
+    obj = Camera.new
+    attach obj
+
+    obj = Entity.new
+    attach obj
   end
 
 end
