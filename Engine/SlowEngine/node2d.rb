@@ -50,18 +50,9 @@ class Node2D
   end
 
   def draw
-    glBindTexture GL_TEXTURE_2D, @sprite.id
-    glBegin GL_QUADS
-      glNormal3f 0, 0, 1
-      glTexCoord2fv 1, 1
-      glVertex3f 1, 1, 0
-      glTexCoord2fv 0, 1
-      glVertex3f 0, 1, 0
-      glTexCoord2fv 0, 0
-      glVertex3f 0, 0, 0
-      glTexCoord2fv 1, 0
-      glVertex3f 1, 0, 0
-    glEnd
+
+    @sprite.draw
+
   end
 
   def onRender
