@@ -35,7 +35,7 @@ glutDisplayFunc   method(:onRenderEvent).to_proc
 
 
 glEnable GL_DEPTH_TEST
-
+glEnable GL_TEXTURE_2D
 
 Clock.init
 glutMainLoop

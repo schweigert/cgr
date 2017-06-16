@@ -6,6 +6,7 @@ include Gl
 include Glu
 include Glut
 
+require_relative 'sprite'
 require_relative 'vector'
 
 class Node2D
@@ -17,6 +18,7 @@ class Node2D
     @rotation = 0
     @scale    = Vector.new 1,1
     @nodes    = []
+    @sprite   = Sprite.new "sprites/char001.jpg"
   end
 
   def translate! v
@@ -48,7 +50,18 @@ class Node2D
   end
 
   def draw
-    glutSolidCube 1
+    glBindTexture GL_TEXTURE_2D, @sprite.id
+    glBegin GL_QUADS
+      glNormal3f 0, 0, 1
+      glTexCoord2fv 1, 1
+      glVertex3f 1, 1, 0
+      glTexCoord2fv 0, 1
+      glVertex3f 0, 1, 0
+      glTexCoord2fv 0, 0
+      glVertex3f 0, 0, 0
+      glTexCoord2fv 1, 0
+      glVertex3f 1, 0, 0
+    glEnd
   end
 
   def onRender
