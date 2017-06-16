@@ -121,6 +121,8 @@ class Engine < Gosu::Window
   def init
     $win = self
     glEnable GL_DEPTH_TEST
+    glEnable GL_BLEND
+    glBlendFunc GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA
     glEnable GL_TEXTURE_2D
 
     Clock.init
@@ -137,7 +139,7 @@ class Engine < Gosu::Window
     spriteNode << Sprite.new("sprites/char001/down0.png")
     @scene << spriteNode
 
-    spriteNode = Node2D.new -3,5
+    spriteNode = Node2D.new 3, 2.5
     spriteNode << Sprite.new("sprites/char001/down1.png")
     @scene << spriteNode
   end
